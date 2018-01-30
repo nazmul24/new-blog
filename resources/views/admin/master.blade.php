@@ -21,6 +21,8 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset('/admin') }}/dist/css/skins/_all-skins.min.css">
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link rel="stylesheet" href="{{ asset('/admin') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -91,6 +93,8 @@
                 <script src="{{ asset('/admin') }}/dist/js/demo.js"></script>
                 <!-- CK Editor -->
                 <script src="{{ asset('/admin') }}/bower_components/ckeditor/ckeditor.js"></script>
+                <!-- Bootstrap WYSIHTML5 -->
+                <script src="{{ asset('/admin') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
                 <!-- DataTables -->
                 <script src="{{ asset('/admin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
                 <script src="{{ asset('/admin') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -99,7 +103,7 @@
                         // Replace the <textarea id="editor1"> with a CKEditor
                         // instance, using default configuration.
                         //$('.textarea').wysihtml5(useLineBreaks: false)
-                        CKEDITOR.replace('editor1')
+                        //CKEDITOR.replace('editor1')
                         //bootstrap WYSIHTML5 - text editor
                         $('.textarea').wysihtml5()
                     })
