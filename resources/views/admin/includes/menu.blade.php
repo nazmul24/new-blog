@@ -31,10 +31,10 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li><a href="{{ url('/category/add-category') }}"><i class="fa fa-circle-o"></i> Posts</a></li>
-            <li><a href="{{ url('/category/manage-category') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
-            <li><a href="{{ url('/category/manage-category') }}"><i class="fa fa-circle-o"></i> Tags</a></li>
-            <li><a href="{{ url('/category/manage-category') }}"><i class="fa fa-circle-o"></i> Users</a></li>
+            <li><a href="{{ url('/admin/post') }}"><i class="fa fa-circle-o"></i> Posts</a></li>
+            <li><a href="{{ url('/admin/category') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
+            <li><a href="{{ url('/admin/tag') }}"><i class="fa fa-circle-o"></i> Tags</a></li>
+            <li><a href="{{ url('/admin/user') }}"><i class="fa fa-circle-o"></i> Users</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

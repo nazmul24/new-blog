@@ -15,22 +15,30 @@
 //     return view('welcome');
 // });
 
+// User Routes
 Route::get('/', 'WelcomeController@index');
 Route::get('/blog-details', 'WelcomeController@blogDetailsInfo')->name('post');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/category/add-category', 'CategoryController@showCategoryForm');
 
-Route::get('admin/post', function() {
-    return view('admin.post.post');
+
+// Admin Routes
+Route::group(['namespace' => 'Admin'], function() {
+
+	// Users Routes
+    Route::resource('admin/user', 'UserController');
+
+    // Post Routes
+    Route::resource('admin/post', 'PostController');
+
+	// Tag Routes
+	Route::resource('admin/tag', 'TagController');
+
+	// Category Routes
+	Route::resource('admin/category', 'CategoryController');
+
+
 });
 
-Route::get('admin/tag', function() {
-    return view('admin.tag.tag');
-});
-
-Route::get('admin/category', function() {
-    return view('admin.category.category');
-});
