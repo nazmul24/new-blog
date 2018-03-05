@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="{{ asset('/admin') }}/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- DataTables -->
         <link rel="stylesheet" href="{{ asset('/admin') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset('/admin') }}/bower_components/select2/dist/css/select2.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('/admin') }}/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -47,7 +49,7 @@
                 <!-- /.content-wrapper -->
                 @include('admin.includes.footer')
                 <!-- /.control-sidebar -->
-                <!-- Add the sidebar's background. This div must be p                 laced
+                <!-- Add the sidebar's background. This div must be placed
                 immediately after the control             sidebar -->
                 <div class="control-sidebar-bg"></div>
             </div>
@@ -73,6 +75,8 @@
             <script src="{{ asset('/admin') }}/dist/js/pages/dashboard2.js"></script>
             <!-- AdminLTE for demo purposes -->
             <script src="{{ asset('/admin') }}/dist/js/demo.js"></script>
+            <!-- Select2 -->
+            <script src="{{ asset('/admin') }}/bower_components/select2/dist/js/select2.full.min.js"></script>
             <!-- CK Editor -->
             <script src="{{ asset('/admin') }}/bower_components/ckeditor/ckeditor.js"></script>
             <!-- Bootstrap WYSIHTML5 -->
@@ -80,6 +84,7 @@
             <!-- DataTables -->
             <script src="{{ asset('/admin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
             <script src="{{ asset('/admin') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
             <script>
             $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
@@ -88,10 +93,9 @@
             //CKEDITOR.replace('editor1')
             //bootstrap WYSIHTML5 - text editor
             $('.textarea').wysihtml5()
-            })
-            </script>
-            <script>
-            $(function () {
+            
+            //Initialize Select2 Elements
+            $('.select2').select2()
             //DataTable
             $('#example1').DataTable()
             $('#example2').DataTable({

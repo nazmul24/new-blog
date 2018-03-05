@@ -28,7 +28,7 @@
 					{{ csrf_field() }}
 					<div class="box-body">
 						<div class="row">
-							<div class="col-md-7">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label for="title">Post Title</label>
 									<input type="text" class="form-control" id="title" name="title" placeholder="Title">
@@ -42,18 +42,35 @@
 									<input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
 								</div>
 							</div>
-							<div class="col-md-5">
-								<div class="form-group">
-									<label for="image">File input</label>
-									<input type="file" id="image" name="image">
-								</div>
-								
+							<div class="col-md-6">
 								<br>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="status"> Publish
-									</label>
+								<div class="form-group">
+									<div class="pull-right">
+										<label for="image">File input</label>
+										<input type="file" id="image" name="image">
+									</div>
+									<div class="checkbox pull-left">
+										<label>
+											<input type="checkbox" name="status" value="1"> Publish
+										</label>
+									</div>
+								</div>
+								<br>
+								<div class="form-group" style="margin-top: 18px">
+									<label>Select Category</label>
+									<select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+										@foreach( $categories as $category)
+										<option value="{{ $category->id }}">{{ $category->name }}</option>
+										@endforeach
+									</select>
+								</div>
+								<div class="form-group" style="margin-top: 18px">
+									<label>Select Tags</label>
+									<select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+										@foreach( $tags as $tag)
+										<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 						</div>
