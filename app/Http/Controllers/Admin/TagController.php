@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\user\Tag;
+use Illuminate\Http\Request;
+
 
 class TagController extends Controller
 {
@@ -14,7 +16,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.tag.show');
+        $tags = Tag::all();
+        return view('admin.tag.show', ['tags' => $tags]);
     }
 
     /**
@@ -35,7 +38,20 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request->all();
+
+        $this->validate($request, [
+            'name'=>'required',
+            'slug'=>'required'
+
+        ]);
+
+        $tag = new Tag();
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->save();
+
+        return redirect(route('tag.index'));
     }
 
     /**
@@ -57,7 +73,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::where('id',$id)->first();
+        return view('admin.tag.edit', ['tag' => $tag]);
     }
 
     /**
@@ -69,7 +86,17 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required',
+            'slug'=>'required'
+        ]);
+
+        $tag = Tag::find($id);
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->save();
+
+        return redirect(route('tag.index'));
     }
 
     /**
@@ -80,6 +107,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tag::where('id',$id)->delete();
+        return redirect()->back();
     }
 }

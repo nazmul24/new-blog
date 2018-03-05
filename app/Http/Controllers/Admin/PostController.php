@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\user\Post;
 
 class PostController extends Controller
 {
@@ -14,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.show');
+        $posts = Post::all();
+        return view('admin.post.show', ['posts' => $posts]);
     }
 
     /**
@@ -35,7 +37,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request->all();
+
+        $this->validate($request, [
+            'title'=>'required',
+            'subtitle'=>'required',
+            'slug'=>'required',
+            'body'=>'required',
+
+        ]);
+
+        $post = new post();
+
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        $post->save();
+
+        return redirect(route('post.index'));
     }
 
     /**
@@ -57,7 +77,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$post = Post::find($id);
+        $post = Post::where('id',$id)->first();
+        return view('admin.post.edit', ['post' => $post]);
     }
 
     /**
@@ -69,7 +91,23 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request->all();
+        $this->validate($request, [
+            'title'=>'required',
+            'subtitle'=>'required',
+            'slug'=>'required',
+            'body'=>'required',
+        ]);
+
+        $post = Post::find($id);
+
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        $post->save();
+
+        return redirect(route('post.index'));
     }
 
     /**
@@ -80,6 +118,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::where('id',$id)->delete();
+        return redirect()->back();
+        //return redirect(route('post.index'));
     }
 }

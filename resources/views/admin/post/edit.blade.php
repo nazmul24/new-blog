@@ -24,22 +24,23 @@
 				@include('admin.includes.errors-message')
 				<!-- /.box-header -->
 				<!-- form start -->
-				<form role="form" action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+				<form role="form" action="{{ route('post.update',$post->id) }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
+					{{ method_field('PATCH') }}
 					<div class="box-body">
 						<div class="row">
 							<div class="col-md-7">
 								<div class="form-group">
 									<label for="title">Post Title</label>
-									<input type="text" class="form-control" id="title" name="title" placeholder="Title">
+									<input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ $post->title }}">
 								</div>
 								<div class="form-group">
 									<label for="subtitle">Post Sub Title</label>
-									<input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub Title">
+									<input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub Title" value="{{ $post->subtitle }}">
 								</div>
 								<div class="form-group">
 									<label for="slug">Post Slug</label>
-									<input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
+									<input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{ $post->slug }}">
 								</div>
 							</div>
 							<div class="col-md-5">
@@ -52,7 +53,7 @@
 								
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" name="status"> Publish
+										<input type="checkbox" name="status" @if($post->status == 1) checked @endif> Publish
 									</label>
 								</div>
 							</div>
@@ -75,7 +76,7 @@
 							<!-- /.box-header -->
 							<div class="box-body pad">
 								<textarea class="textarea" placeholder="Place some text here" name="body"
-								style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+								style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->body }}</textarea>
 							</div>
 						</div>
 						
