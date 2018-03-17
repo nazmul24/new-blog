@@ -78,7 +78,8 @@
             <!-- Select2 -->
             <script src="{{ asset('/admin') }}/bower_components/select2/dist/js/select2.full.min.js"></script>
             <!-- CK Editor -->
-            <script src="{{ asset('/admin') }}/bower_components/ckeditor/ckeditor.js"></script>
+            {{-- <script src="{{ asset('/admin') }}/bower_components/ckeditor/ckeditor.js"></script> --}}
+            <script src="{{ asset('/admin') }}/ckeditor/ckeditor.js"></script>
             <!-- Bootstrap WYSIHTML5 -->
             <script src="{{ asset('/admin') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
             <!-- DataTables -->
@@ -90,9 +91,9 @@
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             //$('.textarea').wysihtml5(useLineBreaks: false)
-            //CKEDITOR.replace('editor1')
+            CKEDITOR.replace('editor1')
             //bootstrap WYSIHTML5 - text editor
-            $('.textarea').wysihtml5()
+            //$('.textarea').wysihtml5()
             
             //Initialize Select2 Elements
             $('.select2').select2()

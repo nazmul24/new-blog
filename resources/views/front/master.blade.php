@@ -18,6 +18,8 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+    <!-- Prism syntax highlighter -->
+    <link href="{{ asset('/front') }}/css/prism.css" rel="stylesheet"> 
     <!-- Custom styles for this template -->
     <link href="{{ asset('/front') }}/css/clean-blog.min.css" rel="stylesheet">
 
@@ -41,6 +43,8 @@
     <script src="{{ asset('/front') }}/vendor/jquery/jquery.min.js"></script>
     <script src="{{ asset('/front') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+	<!-- Prism syntax highlighter -->
+	<script src="{{ asset('/front') }}/js/prism.js"></script>
     <!-- Custom scripts for this template -->
     <script src="{{ asset('/front') }}/js/clean-blog.min.js"></script>
 

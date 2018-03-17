@@ -17,7 +17,10 @@
 
 // User Routes
 Route::get('/', 'WelcomeController@index');
-Route::get('/blog-details', 'WelcomeController@blogDetailsInfo')->name('post');
+Route::get('/post/{post}', 'PostController@post')->name('post');
+
+Route::get('/post/category/{category}', 'WelcomeController@category')->name('category');
+Route::get('/post/tag/{tag}', 'WelcomeController@tag')->name('tag');
 
 Auth::routes();
 
