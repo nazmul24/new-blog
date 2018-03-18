@@ -24,5 +24,22 @@
         </div>
       </div>
     </nav>
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url(@yield('bg-img'))">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>@yield('title')</h1>
+              <h2 class="subheading">@yield('sub-heading')</h2>
+              <span class="meta">Posted by
+                <a href="#">Start Bootstrap</a>
+              on August 24, 2017</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
     

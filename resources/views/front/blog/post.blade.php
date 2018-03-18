@@ -1,23 +1,10 @@
 @extends('front.master')
-@section('main-content')
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('{{ asset('/front') }}/img/post-bg.jpg')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-heading">
-          <h1>{{ $post->title }}</h1>
-          <h2 class="subheading">{{ $post->subtitle }}</h2>
-          <span class="meta">Posted by
-            <a href="#">Start Bootstrap</a>
-          on August 24, 2017</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
 
+@section('bg-img',Storage::disk('local')->url($post->image))
+@section('title', $post->title)
+@section('sub-heading', $post->subtitle)
+
+@section('main-content')
 <!-- fb Comments Plugin Code -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
