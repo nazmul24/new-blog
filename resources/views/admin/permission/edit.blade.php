@@ -19,28 +19,24 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Titles</h3>
+          <h3 class="box-title">Edit Permission</h3>
         </div>
         @include('admin.includes.messages')
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="{{ route('tag.update',$tag->id) }}" method="POST">
+        <form role="form" action="{{ route('permission.update',$permission->id) }}" method="POST">
           {{ csrf_field() }}
           {{ method_field('PUT') }}
           <div class="box-body">
             <div class="row">
               <div class="col-md-offset-3 col-md-6">
                 <div class="form-group">
-                  <label for="name">Tag Title</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Tag Title" value="{{ $tag->name }}">
-                </div>
-                <div class="form-group">
-                  <label for="slug">Tag Slug</label>
-                  <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{ $tag->slug }}">
+                  <label for="name">Permission</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Permission" value="{{ $permission->name }}">
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a class="btn btn-warning" href="{{ route('tag.index') }}">Back</a>
+                  <a class="btn btn-warning" href="{{ route('permission.index') }}">Back</a>
                 </div>
               </div>
             </div>

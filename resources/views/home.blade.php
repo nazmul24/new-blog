@@ -1,23 +1,15 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+@extends('front.master')
+@section('bg-img',asset('front/img/home-bg.jpg'))
+@section('title', 'Welcome to Home')
+@section('sub-heading', '')
+@section('main-content')
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            Welcome to Clean Blog - New Bloging Site
         </div>
     </div>
-</div>
+</article>
+<hr>
 @endsection

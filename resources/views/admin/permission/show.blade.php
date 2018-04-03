@@ -17,8 +17,8 @@
   <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Users</h3>
-      <a class="col-lg-offset-5 btn btn-success" href="{{ route('user.create') }}">Add New</a>
+      <h3 class="box-title">Permissions</h3>
+      <a class="col-lg-offset-5 btn btn-success" href="{{ route('permission.create') }}">Add New</a>
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
         title="Collapse">
@@ -39,32 +39,28 @@
             <thead>
               <tr>
                 <th>S.No</th>
-                <th>User Name</th>
-                <th>Assigned Roles</th>
+                <th>Permission Name</th>
+                <th>Permission For</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($users as $user)
+              @foreach($permissions as $permission)
               <tr>
                 <td>{{ $loop->index + 1 }}</td>
-                <td>{{ $user->name }}</td>
+                <td>{{ $permission->name }}</td>
+                <td>{{ $permission->for }}</td>
+                <td><a href="{{ route('permission.edit',$permission->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                 <td>
-                  @foreach ($user->roles as $role)
-                    {{ $role->name }},
-                  @endforeach
-                </td>
-                <td><a href="{{ route('user.edit',$user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-                <td>
-                  <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy',$user->id) }}" method="POST" style="display: none;">
+                  <form id="delete-form-{{ $permission->id }}" action="{{ route('permission.destroy',$permission->id) }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                   </form>
                   <a href="" onclick="if(confirm('Are you sure, You Want to Delete This?'))
                     {
                     event.preventDefault();
-                    document.getElementById('delete-form-{{ $user->id }}').submit();
+                    document.getElementById('delete-form-{{ $permission->id }}').submit();
                     }else{
                     event.preventDefault();
                     }"><span class="glyphicon glyphicon-trash"></span>
@@ -76,8 +72,8 @@
             <tfoot>
             <tr>
               <th>S.No</th>
-              <th>User Name</th>
-              <th>Assigned Roles</th>
+              <th>Permission Name</th>
+              <th>Permission For</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>

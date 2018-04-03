@@ -88,13 +88,6 @@
 
             <script>
             $(function () {
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            //$('.textarea').wysihtml5(useLineBreaks: false)
-            CKEDITOR.replace('editor1')
-            //bootstrap WYSIHTML5 - text editor
-            //$('.textarea').wysihtml5()
-            
             //Initialize Select2 Elements
             $('.select2').select2()
             //DataTable
@@ -107,6 +100,12 @@
             'info': true,
             'autoWidth': false
             })
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            //$('.textarea').wysihtml5(useLineBreaks: false)
+            CKEDITOR.replace('editor1')
+            //bootstrap WYSIHTML5 - text editor
+            //$('.textarea').wysihtml5()
             })
             </script>
         </body>

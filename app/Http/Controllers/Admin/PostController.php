@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +29,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.post.show', ['posts' => $posts]);
+        return view('admin.post.show', compact('posts'));
     }
 
     /**
@@ -31,10 +42,7 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        return view('admin.post.post', [
-            'categories' => $categories,
-            'tags' => $tags
-        ]);
+        return view('admin.post.post', compact('categories','tags'));
     }
 
     /**
@@ -57,8 +65,10 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public');
+        }else {
+            return 'No';
         }
-
+        
         $post = new post();
         $post->image = $imageName;
         $post->title = $request->title;
@@ -98,11 +108,7 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        return view('admin.post.edit', [
-            'post' => $post,
-            'categories' => $categories,
-            'tags' => $tags
-        ]);
+        return view('admin.post.edit', compact('post','categories','tags'));
     }
 
     /**
@@ -128,7 +134,6 @@ class PostController extends Controller
             //return $request->image->getClientOriginalName();
             $imageName = $request->image->store('public');
         }
-
         $post = Post::find($id);
         $post->image = $imageName;
         $post->title = $request->title;

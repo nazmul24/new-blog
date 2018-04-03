@@ -3,22 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\user\Tag;
+use App\Model\admin\Permission;
+use App\Model\admin\Role;
 use Illuminate\Http\Request;
 
-
-class TagController extends Controller
+class RoleController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +16,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tag.show', compact('tags'));
+        $roles = Role::all();
+        return view('admin.role.show', compact('roles'));
     }
 
     /**
@@ -37,7 +27,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.tag');
+        $permissions = Permission::all();
+        return view('admin.role.create', compact('permissions'));
     }
 
     /**
@@ -48,20 +39,16 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
-
         $this->validate($request, [
-            'name'=>'required',
-            'slug'=>'required'
-
+            'name'=>'required|max:50|unique:roles',
         ]);
 
-        $tag = new Tag();
-        $tag->name = $request->name;
-        $tag->slug = $request->slug;
-        $tag->save();
+        $role = new Role();
+        $role->name = $request->name;
+        $role->save();
+        $role->permissions()->sync($request->permission);
 
-        return redirect(route('tag.index'));
+        return redirect(route('role.index'));
     }
 
     /**
@@ -83,8 +70,10 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::where('id',$id)->first();
-        return view('admin.tag.edit', compact('tag'));
+       //$role = Role::where('id',$id)->first();
+       $role = Role::find($id);
+       $permissions = Permission::all();
+       return view('admin.role.edit', compact('role','permissions'));
     }
 
     /**
@@ -97,16 +86,15 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name'=>'required',
-            'slug'=>'required'
+            'name'=>'required|max:50',
         ]);
 
-        $tag = Tag::find($id);
-        $tag->name = $request->name;
-        $tag->slug = $request->slug;
-        $tag->save();
+        $role = Role::find($id);
+        $role->name = $request->name;
+        $role->save();
+        $role->permissions()->sync($request->permission);
 
-        return redirect(route('tag.index'));
+        return redirect(route('role.index'));
     }
 
     /**
@@ -117,7 +105,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        Tag::where('id',$id)->delete();
+        Role::where('id',$id)->delete();
         return redirect()->back();
     }
 }

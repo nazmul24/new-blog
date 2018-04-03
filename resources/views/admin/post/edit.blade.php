@@ -21,7 +21,7 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Titles</h3>
 				</div>
-				@include('admin.includes.errors-message')
+				@include('admin.includes.messages')
 				<!-- /.box-header -->
 				<!-- form start -->
 				<form role="form" action="{{ route('post.update',$post->id) }}" method="POST" enctype="multipart/form-data">
